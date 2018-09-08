@@ -9,5 +9,6 @@ export default {
     queryMovieByIdForSerials: 'tv/',
     queryMovieByIdForMovies: 'movies/',
     apiKey: `?api_key=${API_KEY}`,
-    testVariable: "testGit"
+    testVariable: "testGit",
+    branch: "newBranch"
 }
