@@ -14,7 +14,7 @@ export default function movie(data) {
             <a class='movie__link' href='${mapData.id}'>
                 <div class='movie__poster'><img src='${mapData.img}'</img></div>
                 <div class='movie__content'>        
-                    <h2 class='movie__title text-center'>${mapData.title}ХУЙ</h2>
+                    <h2 class='movie__title text-center'>${mapData.title}</h2>
                     <date class='movie__date'>${mapData.date}</date>
                     <div class='movie__country'>${mapData.country}</div>   
                     <div class='movie__language'>${mapData.language}</div>

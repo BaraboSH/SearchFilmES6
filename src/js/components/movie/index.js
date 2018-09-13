@@ -11,17 +11,17 @@ const formatter = new Intl.DateTimeFormat("ru", {
 export default function movie(data) {
     const mapData = mappingData(data);
     const html = `
-            <a class='movie-link' href='${mapData.id}'>
-                <div class='poster'><img src='${mapData.img}'</img></div>
-                <div class='content'>        
-                    <h2 class='title text-center'>${mapData.title}</h2>
-                    <date class='date'>${mapData.date}</date>
-                    <div class='country'>${mapData.country}</div>   
-                    <div class='language'>${mapData.language}</div>
-                    <div class='overview '>${mapData.overview}</div>
-                    <div class='popularity'>${mapData.popularity}</div>
-                </div>
-            </a>
+                <a class='movie__link' href='${mapData.id}'>
+                    <div class='movie__poster'><img src='${mapData.img}'</img></div>
+                    <div class='movie__content'>        
+                        <h2 class='movie__title text-center'>${mapData.title}</h2>
+                        <date class='movie__date'>${mapData.date}</date>
+                        <div class='movie__country'>${mapData.country}</div>   
+                        <div class='movie__language'>${mapData.language}</div>
+                        <div class='movie__overview '>${mapData.overview}</div>
+                        <div class='movie__popularity'>${mapData.popularity}</div>
+                    </div>
+                 </a>
     `
     return html;
 }

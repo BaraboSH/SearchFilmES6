@@ -7,8 +7,7 @@ module.exports = {
     entry: "./index.js",
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "bundle.js",
-        publicPath: "dist"
+        filename: "bundle.js"
     },
     module: {
         rules: [{
@@ -22,12 +21,12 @@ module.exports = {
             }
         }]
     },
-    // devServer: {
-    //     hot: true
-    // },
-    // plugins: [
-    //     new htmlWebpackPlugin({
-    //         template: "../../index.html"
-    //     })
-    // ]
+    devServer: {
+        hot: true
+    },
+    plugins: [
+        new htmlWebpackPlugin({
+            template: "../../index.html"
+        })
+    ]
 };
