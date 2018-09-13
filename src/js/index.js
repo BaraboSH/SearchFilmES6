@@ -34,7 +34,7 @@ filters.addEventListener("click", (e) => {
 movieList.addEventListener("click", (e) => {
     e.preventDefault();
     const target = e.target;
-    const link = target.closest('.movie-link');
+    const link = target.closest('.movie__link');
     if (!link) {
         return;
     }
