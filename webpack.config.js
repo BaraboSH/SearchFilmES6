@@ -22,12 +22,12 @@ module.exports = {
             }
         }]
     },
-    devServer: {
-        hot: true
-    },
-    plugins: [
-        new htmlWebpackPlugin({
-            template: "../../index.html"
-        })
-    ]
+    // devServer: {
+    //     hot: true
+    // },
+    // plugins: [
+    //     new htmlWebpackPlugin({
+    //         template: "../../index.html"
+    //     })
+    // ]
 };

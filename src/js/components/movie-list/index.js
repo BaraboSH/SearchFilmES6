@@ -10,11 +10,10 @@ export default class MovieList {
         selector.appendChild(this.fragment);
     }
     renderMovies(data) {
-        debugger;
         this.fragment = document.createDocumentFragment();
         data.forEach(data => {
             const article = document.createElement("article");
-            article.className = 'item col-xl-6  mb-3';
+            article.className = 'movie';
             article.innerHTML = movie(data);
             this.fragment.appendChild(article);
         });

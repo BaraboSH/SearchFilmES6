@@ -32,7 +32,12 @@ body {
     font-family: 'Chango', cursive !important;
 }
 
-.item .movie-link {
+.movies {
+    display: grid;
+    grid-template-columns: repeat(autofit, minmax(100px, 1fr));
+}
+
+.movie__link {
     text-decoration: none;
     transition: all 0.5s;
     display: grid;
@@ -52,8 +57,4 @@ body {
 .overview {
     overflow: hidden;
     height: 50px;
-}
-
-.movies {
-    grid-gap: 10px;
 }
