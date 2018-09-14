@@ -1,6 +1,5 @@
 import config from '../../config'
 
-
 const formatter = new Intl.DateTimeFormat("ru", {
     year: "numeric",
     month: "long",
@@ -35,9 +34,17 @@ function mappingData(data) {
         country: data.origin_country || defaultValue,
         img: getPictureUrl(),
         language: data.original_language || defaultValue,
-        overview: data.overview || defaultValue,
+        overview: getOverview(),
         popularity: data.popularity || defaultValue,
         id: data.id || Date.now()
+    }
+
+    function getOverview() {
+        const overview = data.overview;
+        if (!overview) {
+            return defaultValue;
+        }
+        return overview.substr(0, 120) + "...";
     }
 
     function getPictureUrl() {

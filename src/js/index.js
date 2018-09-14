@@ -2,11 +2,23 @@ import MovieList from "./components/movie-list";
 
 import movieServices from "./components/movie-services";
 
+import $ from "jquery";
+
+
+
 
 const input = document.querySelector('.search-input');
 const movieList = document.querySelector('.movies');
 const mList = new MovieList();
 const filters = document.querySelector(".filters");
+const $sortButton = $('.mobile-sort');
+
+$sortButton.click(e => {
+    e.preventDefault();
+    const expanded = $(e.target).attr('aria-expanded') === 'true' || false;
+    $sortButton.attr('aria-expanded', !expanded);
+});
+
 
 input.addEventListener('input', e => {
     const searchText = e.target.value;
