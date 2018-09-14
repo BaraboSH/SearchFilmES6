@@ -6,14 +6,25 @@ const formatter = new Intl.DateTimeFormat("ru", {
     day: "numeric"
 });
 
+const mediaTypeEn = {
+    "person": "Actor",
+    "tv": "Serial",
+    "movie": "Movie"
+};
+const mediaTypeRU = {
+    "person": "Актер",
+    "tv": "Сериал",
+    "movie": "Фильм"
+};
 
 export default function movie(data) {
     const mapData = mappingData(data);
     const html = `
                 <a class='movie__link' href='${mapData.id}'>
                     <div class='movie__poster'><img src='${mapData.img}'</img></div>
-                    <div class='movie__content'>        
-                        <h2 class='movie__title text-center'>${mapData.title}</h2>
+                    <div class='movie__content'>
+                        <div class='movie__badge'>${mapData.movieType}</div>        
+                        <h2 class='movie__title '>${mapData.title}</h2>
                         <date class='movie__date'>${mapData.date}</date>
                         <div class='movie__country'>${mapData.country}</div>   
                         <div class='movie__language'>${mapData.language}</div>
@@ -36,7 +47,8 @@ function mappingData(data) {
         language: data.original_language || defaultValue,
         overview: getOverview(),
         popularity: data.popularity || defaultValue,
-        id: data.id || Date.now()
+        id: data.id || Date.now(),
+        movieType: mediaTypeRU[data.media_type]
     }
 
     function getOverview() {
