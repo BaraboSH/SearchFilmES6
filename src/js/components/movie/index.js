@@ -40,7 +40,7 @@ function mappingData(data) {
 
     const defaultValue = 'Unknown';
     return {
-        title: data.original_name || data.name || data.original_title || data.title || defaultValue,
+        title: data.title || data.original_name || data.name || data.original_title || defaultValue,
         date: getDate(),
         country: data.origin_country || defaultValue,
         img: getPictureUrl(),

@@ -1,5 +1,5 @@
 const API_KEY = '30c94ae83f75740e876f0072914f1491';
-const language = 'ru-RU';
+const language = 'en-EN';
 
 export default {
     searchMovieUrl: `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=${language}&query=`,

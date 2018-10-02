@@ -1,3 +1,4 @@
+import "../css/style.scss";
 import MovieList from "./components/movie-list";
 
 import movieServices from "./components/movie-services";
