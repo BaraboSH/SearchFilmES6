@@ -6,38 +6,341 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Search Films</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
     <link href="https://fonts.googleapis.com/css?family=Chango|Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 
 <body>
+    <header class="header">
+        <div class="container">
+            <div class="row d-flex align-items-center">
+                <div class=" col-md-3">
+                    <a class="header__logo" href="index.html"><img src="img/filmLogo.png" alt="Film" class="header__img"></a>
+                </div>
+                <form action="" class="col-md-7 form-search ">
+                    <input type="text" class="form-control form-search__input" placeholder="Search for film or serial">
+                    <button class="btn btn-main btn-effect"><i class="fa fa-search"></i></button>
+                </form>
+                <div class="col-md-2 d-flex align-items-center justify-content-end">
+                    <div class="likes">
+                        <div class="likes__field">
+                            <i class="fa fa-heart"></i>
+                        </div>
+                        <div class="likes__panel">
+                            <ul class="likes__list">
+                                <li>
+                                    <a class="likes__link" href="#23456">
+                                        <figure class="likes__fig">
+                                            <img src="https://image.tmdb.org/t/p/w780//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg"
+                                                alt="Test">
+                                        </figure>
+                                        <div class="likes__data">
+                                            <h4 class="likes__name">Venom</h4>
+                                            <p class="likes__date">2018</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="likes__link" href="#23456">
+                                        <figure class="likes__fig">
+                                            <img src="https://image.tmdb.org/t/p/w780//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg"
+                                                alt="Test">
+                                        </figure>
+                                        <div class="likes__data">
+                                            <h4 class="likes__name">Venom</h4>
+                                            <p class="likes__date">2018</p>
+                                        </div>
+                                    </a>
+                                </li>
 
-    <div class="jumbotron">
-        <div class="row ">
-            <div class="col-md-12">
-                <h1 class="main-title">Find the Movie<br> Tv-show or Actor</h1>
-                <div class="form-group">
-                    <input type="text" name="" id="" class="search-input form-control">
-                    <div class="filters">
-                        <a class="btn btn-success mobile-sort" aria-controls="filters__list" aria-expanded="false" href="#">Сортировать</a>
-                        <ul class="filters__list">
-                            <li class="filters__item"><a class="btn btn-primary" data-filter="raiting-max" href="">Рейтинг
-                                    &#9650;</a></li>
-                            <li class="filters__item"><a class="btn btn-primary ml-2" data-filter="raiting-min" href="">Рейтинг
-                                    &#9660;</a></li>
-                            <li class="filters__item"><a class="btn btn-primary ml-2" data-filter="date-new" href="">Новые</a></li>
-                            <li class="filters__item"><a class="btn btn-primary ml-2" data-filter="date-old" href="">Старые</a></li>
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <section class="movie-latest">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8 text-center text-md-left">
+                    <h2 class="movie-latest__header">Новинки</h2>
+                </div>
+                <div class="col-md-4 order-md-1 order-2 text-right mt-3 mt-md-0">
+                    <a href="" class="btn">
+                        Посмотреть все
+                        <i class="fas fa-angle-double-right"></i>
+                    </a>
+                </div>
+
+                <div class="owl-carousel owl-theme col order-md-2 order-1">
+                    <div class="movie-latest__item">
+                        <img src="https://image.tmdb.org/t/p/w780//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg" class="movie-latest__poster"
+                            alt="">
+                        <div class="movie-latest__buttons">
+                            <a href="" class="btn btn-info">Подробнее</a>
+                        </div>
+                        <div class="movie-latest__stars">
+                            <div class="movie-latest__rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span>7.5/10</span>
+                        </div>
+                        <div class="movie-latest__detail">
+                            <h4 class="movie-latest__title">Venom</h4>
+                            <span class="movie-latest__release">14 October</span>
+                        </div>
+                    </div>
+                    <div class="movie-latest__item">
+                        <img src="https://image.tmdb.org/t/p/w780//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg" class="movie-latest__poster"
+                            alt="">
+                        <div class="movie-latest__buttons">
+                            <a href="" class="btn btn-info">Подробнее</a>
+                        </div>
+                        <div class="movie-latest__stars">
+                            <div class="movie-latest__rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span>7.5/10</span>
+                        </div>
+                        <div class="movie-latest__detail">
+                            <h4 class="movie-latest__title">Venom</h4>
+                            <span class="movie-latest__release">14 October</span>
+                        </div>
+                    </div>
+                    <div class="movie-latest__item">
+                        <img src="https://image.tmdb.org/t/p/w780//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg" class="movie-latest__poster"
+                            alt="">
+                        <div class="movie-latest__buttons">
+                            <a href="" class="btn btn-info">Подробнее</a>
+                        </div>
+                        <div class="movie-latest__stars">
+                            <div class="movie-latest__rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span>7.5/10</span>
+                        </div>
+                        <div class="movie-latest__detail">
+                            <h4 class="movie-latest__title">Venom</h4>
+                            <span class="movie-latest__release">14 October</span>
+                        </div>
+                    </div>
+                    <div class="movie-latest__item">
+                        <img src="https://image.tmdb.org/t/p/w780//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg" class="movie-latest__poster"
+                            alt="">
+                        <div class="movie-latest__buttons">
+                            <a href="" class="btn btn-info">Подробнее</a>
+                        </div>
+                        <div class="movie-latest__stars">
+                            <div class="movie-latest__rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span>7.5/10</span>
+                        </div>
+                        <div class="movie-latest__detail">
+                            <h4 class="movie-latest__title">Venom</h4>
+                            <span class="movie-latest__release">14 October</span>
+                        </div>
+                    </div>
+                    <div class="movie-latest__item">
+                        <img src="https://image.tmdb.org/t/p/w780//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg" class="movie-latest__poster"
+                            alt="">
+                        <div class="movie-latest__buttons">
+                            <a href="" class="btn btn-info">Подробнее</a>
+                        </div>
+                        <div class="movie-latest__stars">
+                            <div class="movie-latest__rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span>7.5/10</span>
+                        </div>
+                        <div class="movie-latest__detail">
+                            <h4 class="movie-latest__title">Venom</h4>
+                            <span class="movie-latest__release">14 October</span>
+                        </div>
+                    </div>
+                    <div class="movie-latest__item">
+                        <img src="https://image.tmdb.org/t/p/w780//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg" class="movie-latest__poster"
+                            alt="">
+                        <div class="movie-latest__buttons">
+                            <a href="" class="btn btn-info">Подробнее</a>
+                        </div>
+                        <div class="movie-latest__stars">
+                            <div class="movie-latest__rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span>7.5/10</span>
+                        </div>
+                        <div class="movie-latest__detail">
+                            <h4 class="movie-latest__title">Venom</h4>
+                            <span class="movie-latest__release">14 October</span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
-    </div>
-    <div class="movies"></div>
+    </section>
+    <div class="container">
+        <div class="row justify-content-md-end justify-content-center p-4">
+            <div class="sort-by">
+                <div class="sort-by-select">
+                    <select class="chosen-select-no-single">
+                        <option>Default Order</option>
+                        <option>Featured</option>
+                        <option>Top Viewed</option>
+                        <option>Top Rated</option>
+                        <option>Newest</option>
+                        <option>Oldest</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <main class="movies">
+            <div class="movie">
+                <div class="movie__poster">
+                    <img src="https://image.tmdb.org/t/p/w780//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg" class="movie__image"
+                        alt="">
+                </div>
+                <div class="movie__content">
+                    <h2 class="movie__title">Venom</h2>
+
+                    <div class="movie__stars">
+                        <div class="movie__rating">
+                            <i class="fa fa-star movie__rate"></i>
+                            <span class="">7.5/10</span>
+                            <span class="movie__category float-right">Action, Fantasy</span>
+                        </div>
+                    </div>
+                    <p class="movie__description">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque nobis quisquam voluptas, dolorum
+                        nam, cupiditate laborum voluptatem vero nemo quis dicta autem alias quia vitae tempora nisi
+                        minima
+                        dignissimos dolores!
+                    </p>
+                    <a href="" class="btn">Подробнее</a>
+                </div>
+            </div>
+            <div class="movie">
+                <div class="movie__poster">
+                    <img src="https://image.tmdb.org/t/p/w780//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg" class="movie__image"
+                        alt="">
+                </div>
+                <div class="movie__content">
+                    <h2 class="movie__title">Venom</h2>
+
+                    <div class="movie__stars">
+                        <div class="movie__rating">
+                            <i class="fa fa-star movie__rate"></i>
+                            <span class="">7.5/10</span>
+                            <span class="movie__category float-right">Action, Fantasy</span>
+                        </div>
+                    </div>
+                    <p class="movie__description">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque nobis quisquam voluptas, dolorum
+                        nam, cupiditate laborum voluptatem vero nemo quis dicta autem alias quia vitae tempora nisi
+                        minima
+                        dignissimos dolores!
+                    </p>
+                    <a href="" class="btn">Подробнее</a>
+                </div>
+            </div>
+            <div class="movie">
+                <div class="movie__poster">
+                    <img src="https://image.tmdb.org/t/p/w780//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg" class="movie__image"
+                        alt="">
+                </div>
+                <div class="movie__content">
+                    <h2 class="movie__title">Venom</h2>
+
+                    <div class="movie__stars">
+                        <div class="movie__rating">
+                            <i class="fa fa-star movie__rate"></i>
+                            <span class="">7.5/10</span>
+                            <span class="movie__category float-right">Action, Fantasy</span>
+                        </div>
+                    </div>
+                    <p class="movie__description">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque nobis quisquam voluptas, dolorum
+                        nam, cupiditate laborum voluptatem vero nemo quis dicta autem alias quia vitae tempora nisi
+                        minima
+                        dignissimos dolores!
+                    </p>
+                    <a href="" class="btn">Подробнее</a>
+                </div>
+            </div>
+            <div class="movie">
+                <div class="movie__poster">
+                    <img src="https://image.tmdb.org/t/p/w780//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg" class="movie__image"
+                        alt="">
+                </div>
+                <div class="movie__content">
+                    <h2 class="movie__title">Venom</h2>
+
+                    <div class="movie__stars">
+                        <div class="movie__rating">
+                            <i class="fa fa-star movie__rate"></i>
+                            <span class="">7.5/10</span>
+                            <span class="movie__category float-right">Action, Fantasy</span>
+                        </div>
+                    </div>
+                    <p class="movie__description">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque nobis quisquam voluptas, dolorum
+                        nam, cupiditate laborum voluptatem vero nemo quis dicta autem alias quia vitae tempora nisi
+                        minima
+                        dignissimos dolores!
+                    </p>
+                    <a href="" class="btn">Подробнее</a>
+                </div>
+            </div>
+            <div class="movie">
+                <div class="movie__poster">
+                    <img src="https://image.tmdb.org/t/p/w780//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg" class="movie__image"
+                        alt="">
+                </div>
+                <div class="movie__content">
+                    <h2 class="movie__title">Venom</h2>
+
+                    <div class="movie__stars">
+                        <div class="movie__rating">
+                            <i class="fa fa-star movie__rate"></i>
+                            <span class="">7.5/10</span>
+                            <span class="movie__category float-right">Action, Fantasy</span>
+                        </div>
+                    </div>
+                    <p class="movie__description">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque nobis quisquam voluptas, dolorum
+                        nam, cupiditate laborum voluptatem vero nemo quis dicta autem alias quia vitae tempora nisi
+                        minima
+                        dignissimos dolores!
+                    </p>
+                    <a href="" class="btn">Подробнее</a>
+                </div>
+            </div>
+        </main>
     </div>
 
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 </body>
 
 </html>

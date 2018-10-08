@@ -6,20 +6,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Search Films</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
     <link href="https://fonts.googleapis.com/css?family=Chango|Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
-<link href="./css/style.css" rel="stylesheet"></head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="./css/style.css" rel="stylesheet">
+</head>
 
 <body>
+    <header class="header">
+        <div class="container">
+            <div class="row d-flex align-items-center">
+                <div class=" col-md-3">
+                    <a class="header__logo" href="index.html"><img src="img/filmLogo.png" alt="Film" class="header__img"></a>
+                </div>
+                <form action="" class="col-md-6 form-search ">
+                    <input type="text" class="form-control form-search__input" placeholder="Search for film or serial">
+                    <button class="btn btn-main btn-effect"><i class="fa fa-search"></i></button>
+                </form>
+                <div class="col-md-3 d-flex align-items-center">
+                    <div class="likes">
+                        <div class="likes__field">
+                            <i class="fa fa-heart"></i>
+                        </div>
+                        <div class="likes__panel">
+                            <ul class="likes__list">
+                                <!--
+                                        <li>
+                                            <a class="likes__link" href="#23456">
+                                                <figure class="likes__fig">
+                                                    <img src="img/test-1.jpg" alt="Test">
+                                                </figure>
+                                                <div class="likes__data">
+                                                    <h4 class="likes__name">Pasta with Tomato ...</h4>
+                                                    <p class="likes__author">The Pioneer Woman</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class="container movie-latest">
+            <h2 сlass="mtitle">Новинки</h2>
+            <div class="owl-carousel owl-theme">
+                <div class="movie-latest__item">
+                    <img src="https://image.tmdb.org/t/p/w342//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg" alt="">
+                </div>
+                <div class="movie-latest__item">
+                    <img src="https://image.tmdb.org/t/p/w342//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg" alt="">
+                </div>
+                <div class="movie-latest__item">
+                    <img src="https://image.tmdb.org/t/p/w342//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg" alt="">
+                </div>
+                <div class="movie-latest__item">
+                    <img src="https://image.tmdb.org/t/p/w342//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg" alt="">
+                </div>
+                <div class="movie-latest__item">
+                    <img src="https://image.tmdb.org/t/p/w342//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg" alt="">
+                </div>
+                <div class="movie-latest__item">
+                    <img src="https://image.tmdb.org/t/p/w342//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg" alt="">
+                </div>
+                <div class="movie-latest__item">
+                    <img src="https://image.tmdb.org/t/p/w342//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg" alt="">
+                </div>
+                <div class="movie-latest__item">
+                    <img src="https://image.tmdb.org/t/p/w342//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg" alt="">
+                </div>
+                <div class="movie-latest__item">
+                    <img src="https://image.tmdb.org/t/p/w342//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg" alt="">
+                </div>
+                <div class="movie-latest__item">
+                    <img src="https://image.tmdb.org/t/p/w342//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg" alt="">
+                </div>
+                <div class="movie-latest__item">
+                    <img src="https://image.tmdb.org/t/p/w342//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg" alt="">
+                </div>
+                <div class="movie-latest__item">
+                    <img src="https://image.tmdb.org/t/p/w342//8Gyl0fknqiZeCLm9XitxCXQmEL9.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
     <div class="jumbotron">
         <div class="row ">
             <div class="col-md-12">
-                <h1 class="main-title">Find the Movie<br> Tv-show or Actor</h1>
-                <div class="form-group">
-                    <input type="text" name="" id="" class="search-input form-control">
+                <!-- <div class="form-group">
                     <div class="filters">
                         <a class="btn btn-success mobile-sort" aria-controls="filters__list" aria-expanded="false" href="#">Сортировать</a>
                         <ul class="filters__list">
@@ -31,13 +109,14 @@
                             <li class="filters__item"><a class="btn btn-primary ml-2" data-filter="date-old" href="">Старые</a></li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
     <div class="movies"></div>
     </div>
-
-<script type="text/javascript" src="vendor.js"></script><script type="text/javascript" src="bundle.js"></script></body>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script type="text/javascript" src="bundle.js"></script>
+</body>
 
 </html>
