@@ -1,28 +1,71 @@
+// Импорт стилей
 import "../css/style.scss";
-import 'owl.carousel/dist/assets/owl.carousel.scss';
-import 'owl.carousel';
-import MovieList from "./components/movie-list";
 
-import movieServices from "./components/movie-services";
+// Импорт слайдер библиотеки
+import "owl.carousel/dist/assets/owl.carousel.scss";
+import "owl.carousel";
+
+//// Импорт компонентов
+//  Поиск
+import Search from "./models/Search";
+import * as searchView from "./views/searchView";
+
+// Популярные фильмы
+import Popular from "./models/Popular";
+import * as popularView from "./views/popularView";
+
+// Лучшие фильмы
+import TopRated from "./models/TopRated";
+import * as ratedView from "./views/topRatedView";
+import * as movieListView from './views/movieListView';
+// Импорт базовых элементов страницы
+import {
+    elements,
+    renderLoader,
+    clearLoader
+} from "./views/base";
 
 
+// Обьект текущего состояния
+const state = {};
 
-$('.owl-carousel').owlCarousel({
-    loop: true,
-    margin: 20,
-    responsive: {
-        0: {
-            items: 1
-        },
+/**
+ * КОНТРОЛЛЕР ПОИСКА
+ */
+const controlSearch = async () => {
+    // 1) Получаю запрос с представления
+    const query = searchView.getInput();
 
-        768: {
-            items: 3
-        },
-        1000: {
-            items: 4
-        }
+    if (query) {
+        // 2) Новый обьект поиска и добавляю в состоянии
+        state.search = new Search(query);
+
+        // 3) Очистка поискового поля
+        searchView.clearInput();
+
+        // 4) Очистка результата
+        searchView.clearResults();
+
+        // 5) Отрисовка лоадера
+        renderLoader(elements.searchResList);
+
+        // 6) Скрываю блок постеров и показываю результаты 
+        searchView.showBlock();
     }
-})
+    try {
+        // 7) Поиск фильмов
+        await state.search.getResults();
+        // 8) Скрываю лоадер
+        clearLoader();
+        movieListView.renderResults(state.search.result);
+        console.log(state.search.result);
+
+    } catch (error) {
+        clearLoader();
+        alert('Something wrong with the search...');
+        console.log(error);
+    }
+};
 
 // const input = document.querySelector('.search-input');
 // const movieList = document.querySelector('.movies');
@@ -35,7 +78,6 @@ $('.owl-carousel').owlCarousel({
 //     const expanded = $(e.target).attr('aria-expanded') === 'true' || false;
 //     $sortButton.attr('aria-expanded', !expanded);
 // });
-
 
 // input.addEventListener('input', e => {
 //     const searchText = e.target.value;
@@ -74,3 +116,61 @@ $('.owl-carousel').owlCarousel({
 //         });
 
 // })
+
+
+// Событие поиска в инпуте
+elements.searchForm.addEventListener("submit", e => {
+    e.preventDefault();
+    controlSearch();
+});
+
+
+document.addEventListener("DOMContentLoaded", async () => {
+    // 1) Создаю новый обьект лучших фильмов и добавляю в состоянии
+    state.topRated = new TopRated();
+
+    // 2) Создаю новый обьект популярных фильмов и добавляю в состоянии
+    state.popular = new Popular();
+
+    // 3) Получаю асинхронно лучшие и популярные фильмы
+    await state.topRated.getTopRated();
+    await state.popular.getPopular();
+
+    // 4) Отрисовываю постеры в дом-дерво
+    ratedView.renderResults(state.topRated.items);
+    popularView.renderResults(state.popular.items);
+
+    // 5) Инициализирую слайдер для постеров
+    const owl = $(".owl-carousel");
+    owl.owlCarousel({
+        loop: true,
+        margin: 20,
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 3
+            },
+            1000: {
+                items: 4
+            }
+        }
+    });
+
+    // 6) Обрабатываю событие мышки для прокрутки постеров
+    owl.on("mousewheel", ".owl-stage", function (e) {
+        if (e.originalEvent.wheelDelta > 0) {
+            $(e.target)
+                .closest(".owl-carousel")
+                .trigger("next.owl");
+        } else {
+            $(e.target)
+                .closest(".owl-carousel")
+                .trigger("prev.owl");
+        }
+        e.preventDefault();
+    });
+
+
+});
