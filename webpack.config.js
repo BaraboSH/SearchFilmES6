@@ -61,6 +61,9 @@ module.exports = (env) => {
                 filename: './css/style.css'
             })
         ],
+        externals: {
+            jquery: 'jQuery'
+        },
         devServer: {
             contentBase: './dist'
         }

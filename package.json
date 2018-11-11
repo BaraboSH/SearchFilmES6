@@ -14,7 +14,8 @@
     "license": "ISC",
     "dependencies": {
         "@babel/polyfill": "^7.0.0",
-        "jquery": "^3.3.1",
+        "magnific-popup": "^1.1.0",
+        "modal-video": "^2.4.2",
         "owl.carousel": "^2.3.4"
     },
     "devDependencies": {

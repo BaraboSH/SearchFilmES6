@@ -6,6 +6,11 @@ export const elements = {
     searchBlock: document.querySelector('.results'),
     searchResList: document.querySelector('.results__movies'),
     searchResPages: document.querySelector('.results__pages'),
+    searchTitle: document.querySelector('.results__title'),
+    posters: document.querySelector('.advertise'),
+    sortBy: document.querySelector('.sort-by__select'),
+    likesMenu: document.querySelector('.likes__field i'),
+    info: document.querySelector('.info')
 }
 
 export const elementStrings = {
