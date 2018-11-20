@@ -1,5 +1,17 @@
 const API_KEY = "30c94ae83f75740e876f0072914f1491";
-const language = "ru-RU";
+let language = localStorage.getItem('lang') || 'uk-UA';
+
+const changeLanguage = () => {
+    if (language === "uk-UA") {
+        localStorage.setItem('lang', 'ru-RU');
+
+    } else {
+        localStorage.setItem('lang', 'uk-UA');
+    }
+}
+const getLanguage = () => {
+    return language;
+}
 
 export default {
     searchUrl: "https://api.themoviedb.org/3/search/multi",
@@ -11,7 +23,10 @@ export default {
     queryMovieById: "https://api.themoviedb.org/3/movie/",
     queryPersonById: "https://api.themoviedb.org/3/person/",
     apiKey: API_KEY,
-    language: language,
+    language: getLanguage(),
+    setLanguage: () => {
+        changeLanguage();
+    },
     popularMovie: "https://api.themoviedb.org/3/movie/popular",
     topRatedMovie: "https://api.themoviedb.org/3/movie/top_rated",
     movieGenre: "https://api.themoviedb.org/3/genre/movie/list",

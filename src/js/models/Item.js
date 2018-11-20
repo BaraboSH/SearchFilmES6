@@ -19,7 +19,7 @@ export default class Item {
         }
     }
     renderGenre(genres) {
-        if (!genres) return "Неизвестно";
+        if (!genres) return "Невідомо";
         const resGenres = new Set();
         genres.forEach(el => {
             resGenres.add(el["name"]);
@@ -27,15 +27,15 @@ export default class Item {
         return `${Array.from(resGenres).join(", ")}`;
     }
     renderRuntime(time) {
-        if (!time) return `Неизвестно`;
+        if (!time) return `Невідомо`;
         if (time / 60 > 1) {
-            return `${Math.floor(time / 60)} ч ${time % 60} мин`;
+            return `${Math.floor(time / 60)} ч ${time % 60} хв`;
         }
-        return `${time} мин`;
+        return `${time} хв`;
     }
     renderDate(date) {
         if (date) {
-            const formatter = new Intl.DateTimeFormat("ru", {
+            const formatter = new Intl.DateTimeFormat("uk", {
                 year: "numeric",
                 month: "long",
                 day: "numeric"
@@ -71,7 +71,7 @@ export default class Item {
         let result = "";
         const urlVideo = await this.getVideo(type);
         if (urlVideo) {
-            result += `<a href="http://www.youtube.com/watch?v=${urlVideo}" class="btn-inline btn-video" >Видео</a>`;
+            result += `<a href="http://www.youtube.com/watch?v=${urlVideo}" class="btn-inline btn-video" >Відео</a>`;
         }
         if (data.homepage) {
             result += `<a href="${data.homepage}" target="_blank" class="btn-inline">Сайт</a>`;
@@ -132,8 +132,15 @@ export default class Item {
     }
     renderBudget(budget) {
         let result = '';
-        if (budget / (1000 * 1000) > 1) result += `${budget/(1000 * 1000)} million`
-        else result += budget;
+        if (budget / (1000 * 1000) > 1) {
+            if (budget / (1000 * 1000 * 1000) > 1) {
+                result += `${Math.round(budget/(1000 * 1000 * 1000))} billion`;
+            } else {
+                result += `${Math.round(budget/(1000 * 1000))} million`;
+            }
+        } else {
+            result += budget;
+        }
         return result;
     }
     renderCountries(countries) {
@@ -184,7 +191,7 @@ export default class Item {
             <img src="${config.imageSrc}${item.poster_path}" class="movie-popular__poster"
                 alt="">
             <div class="movie-popular__buttons">
-                <a href="#${type}/${item.id}" class="btn btn-info">Подробнее</a>
+                <a href="#${type}/${item.id}" class="btn btn-info">Детальніше</a>
             </div>
             <div class="movie-popular__stars">
                 <div class="movie-popular__rating">

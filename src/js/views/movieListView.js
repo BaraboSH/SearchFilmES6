@@ -48,7 +48,7 @@ const renderButtons = (page, numResults, resPerPage = 20) => {
 
 };
 export const limitMovieDescription = (title, limit = 150) => {
-    if (!title) return 'Нету информации';
+    if (!title) return 'Немає інформації';
     const newTitle = [];
     if (title.length > limit) {
         title.split(' ').reduce((acc, cur) => {
@@ -84,7 +84,7 @@ const renderItem = (movie, type) => {
             <p class="movie__description">
                 ${mapData.description}
             </p>
-            <a href="#${mapData.type}/${mapData.id}" class="btn btn-more">Подробнее</a>
+            <a href="#${mapData.type}/${mapData.id}" class="btn btn-more">Подробиці</a>
         </div>
     </li>
     `;
@@ -118,7 +118,7 @@ const mappingData = data => {
 
 
     function renderGenre(genres, type) {
-        if (!genres) return 'Неизвестно';
+        if (!genres) return 'Невідомо';
         const item = type === 'tv' ? tvGenres : movieGenres;
         const resGenres = [];
         genres.forEach((el) => {

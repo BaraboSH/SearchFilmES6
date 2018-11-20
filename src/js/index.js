@@ -34,6 +34,7 @@ import * as likesView from "./views/likesView";
 import Movie from "./models/Movie";
 import TV from "./models/TV";
 import Person from "./models/Person"
+import config from "./config";
 
 // Обьект текущего состояния
 const state = {};
@@ -99,7 +100,7 @@ const controlDetail = async (type, id) => {
     renderLoader(elements.info);
     await state.detail.getItem();
     clearLoader();
-    state.detail.renderResults();
+    state.detail.renderResults(state.likes.isLiked(state.detail.type + id));
 
 };
 
@@ -107,8 +108,11 @@ const controlDetail = async (type, id) => {
  * КОНТРОЛЛЕР ЛАЙКОВ
  */
 const controlLikes = () => {
+    console.log("LIKE");
+
     if (!state.likes) state.likes = new Likes();
-    const currentID = state.detail.id;
+    const currentID = state.detail.type + state.detail.id;
+    console.log(currentID);
 
     // User has NOT yet liked current recipe
     if (!state.likes.isLiked(currentID)) {
@@ -233,7 +237,8 @@ window.addEventListener("hashchange", controlURL);
 // Событие поиска в инпуте
 elements.searchForm.addEventListener("submit", e => {
     e.preventDefault();
-    window.location.hash = `search/${searchView.getInput()}`;
+    if (searchView.getInput() !== '')
+        window.location.hash = `search/${searchView.getInput()}`;
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -246,10 +251,9 @@ document.addEventListener("DOMContentLoaded", () => {
         var $this = $(this),
             container = $this.closest(".detail-main__season"),
             currentContent = container.find(".detail-main__episodes"),
-            duration = 500;
-        //   currentContent.slideToggle();
-        if (!$this.hasClass("active")) {
-            $this
+            duration = 200;
+        if (!container.hasClass("active")) {
+            container
                 .addClass("active")
                 .siblings()
                 .removeClass("active")
@@ -258,7 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 .slideUp(duration);
             currentContent.stop(true).slideDown(duration);
         } else {
-            $this.removeClass("active");
+            container.removeClass("active");
             currentContent.stop(true).slideUp(duration);
         }
     });
@@ -324,4 +328,15 @@ elements.sortBy.addEventListener("change", e => {
         state.search ? state.search.totalResults : undefined,
         state.mList.page
     );
+});
+elements.changeLanguage.addEventListener("click", () => {
+    config.setLanguage();
+    window.location.reload();
+});
+
+elements.info.addEventListener("click", (e) => {
+    if (e.target.matches('.detail-intro__like, .detail-intro__like *')) {
+        e.preventDefault();
+        controlLikes();
+    }
 });

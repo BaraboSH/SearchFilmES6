@@ -4,7 +4,7 @@ import {
 
 export const toggleLikeBtn = isLiked => {
     const iconString = isLiked ? 'fa fa-heart' : 'far fa-heart';
-    document.querySelector('.detail__love i').className = iconString;
+    document.querySelector('.detail-intro__like i').className = iconString;
 };
 
 export const toggleLikeMenu = numLikes => {
@@ -26,7 +26,7 @@ export const renderLike = like => {
         </a>
     </li>
     `;
-    elements.likesList.insertAdjacentHTML('beforeend', markup);
+    elements.likeList.insertAdjacentHTML('afterbegin', markup);
 };
 
 export const deleteLike = id => {

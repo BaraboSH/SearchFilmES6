@@ -39,7 +39,7 @@ const renderItem = item => {
         <img src="${config.imageSrc}${item.poster_path}" class="movie-popular__poster"
             alt="">
         <div class="movie-popular__buttons">
-            <a href="#movie/${item.id}" class="btn btn-info">Подробнее</a>
+            <a href="#movie/${item.id}" class="btn btn-info">Подробиці</a>
         </div>
         <div class="movie-popular__stars">
             <div class="movie-popular__rating">

@@ -1,8 +1,12 @@
 import config from "../config";
 import Item from "./Item";
+import {
+    elements
+} from '../views/base'
 export default class TV extends Item {
     constructor(id) {
         super(id);
+        this.type = 'tv/';
     }
     async getItem() {
         try {
@@ -10,6 +14,9 @@ export default class TV extends Item {
                 `${config.queryTVById}${this.id}?api_key=${config.apiKey}&language=${config.language}`
             );
             this.res = await resJson.json();
+            this.title = this.res.name;
+            this.date = super.renderDate(this.res.first_air_date);
+            this.img = super.getPictureUrl(this.res.poster_path);
             await super.getCredits("tv");
             await super.getRecommend("tv");
             console.log(this.res);
@@ -18,7 +25,7 @@ export default class TV extends Item {
         }
     }
 
-    async renderResults() {
+    async renderResults(isLiked) {
         const data = this.res;
         const markup = `
             <article class="detail">
@@ -40,10 +47,10 @@ export default class TV extends Item {
                         )}</li>
                     </ul>
                     ${await super.renderButtons(data, "tv")}
-                    <a href="" class="detail-intro__like"><i class="far fa-heart"></i></a>
+                    <a href="" class="detail-intro__like"><i class="${isLiked?"fa fa-heart":"far fa-heart"}"></i></a>
                     <div class="detail-intro__rating">
                         ${super.renderRate(data.vote_average)}
-                        <span>${data.vote_count} проголосовавших</span>
+                        <span>${data.vote_count} голосуючих</span>
                     </div>
                 </div>
             </div>
@@ -54,42 +61,42 @@ export default class TV extends Item {
                     <div class="col-lg-8 col-sm-12">
                         <div class="detail-main__content">
                             <div class="detail-main__storyline">
-                                <h3 class="detail-main__title">Описание</h3>
+                                <h3 class="detail-main__title">Опис</h3>
                                 <p class="detail-main__description">
                                     ${data.overview}
                                 </p>
                             </div>
                         </div>
                         <div class="detail-main__seasons">
-                            ${await this.renderSeasons(data.seasons)}
+                            
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-12">
                         <aside>
                             <div class="detail-main__widget">
-                                <h3 class="detail-main__title">Подробности</h3>
-                                <ul class="detail-main__list">
-                                    <li class="detail-main__item"><strong>Премьера: </strong>${super.renderDate(
+                                <h3 class="detail-main__title">Подробиці</h3>
+                                <ul class="detail-main__list list">
+                                    <li class="detail-main__item"><strong>Прем'єра: </strong>${super.renderDate(
                                       data.first_air_date
                                     )}</li>
-                                    <li class="detail-main__item"><strong>Режиссер: </strong>${this.renderDirector(
+                                    <li class="detail-main__item"><strong>Режисер: </strong>${this.renderDirector(
                                       data.created_by
                                     )}</li>
                                     <li class="detail-main__item"><strong>Канал: </strong>${
                                       data.networks[0].name
                                     }</li>
-                                    <li class="detail-main__item"><strong>Страна: </strong>${
+                                    <li class="detail-main__item"><strong>Країна: </strong>${
                                       data.origin_country[0]
                                     }</li>
-                                    <li class="detail-main__item"><strong>Язык оригинала: </strong>${data.original_language.toUpperCase()}</li>
-                                    <li class="detail-main__item"><strong>Кинокомпания: </strong>${super.renderCompanies(
+                                    <li class="detail-main__item"><strong>Мова оригіналу: </strong>${data.original_language.toUpperCase()}</li>
+                                    <li class="detail-main__item"><strong>Кінокомпанія: </strong>${super.renderCompanies(
                                       data.production_companies
                                     )}</li>
                                 </ul>
                             </div>
                             <div class="detail-main__widget">
-                                <h3 class="detail-main__title">Актерский состав</h3>
-                                <ul class="detail-main__list">
+                                <h3 class="detail-main__title">Акторський склад</h3>
+                                <ul class="detail-main__list list">
                                 ${super.renderCasts()}
                                 </ul>
                             </div>
@@ -104,7 +111,7 @@ export default class TV extends Item {
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-8 text-center text-md-left">
-                        <h2 class="movie-popular__header">Вам также могут понравиться...</h2>
+                        <h2 class="movie-popular__header">Вам також можуть сподобатися...</h2>
                     </div>
                     <div class="owl-carousel owl-theme">
                     ${super.renderRecommends("tv")}
@@ -115,6 +122,7 @@ export default class TV extends Item {
     </article>
         `;
         super.insertIntoDOM(markup);
+        this.renderSeasons(data.seasons);
         const owl = $(".owl-carousel");
         owl.owlCarousel({
             loop: true,
@@ -168,19 +176,19 @@ export default class TV extends Item {
         for (let i = 0; i < data.length; i++) {
             result += await this.renderSeason(data[i]);
         }
-        return result;
+        document.querySelector('.detail-main__seasons').insertAdjacentHTML("afterbegin", result);
     }
     async renderSeason(el) {
         return `
         <div class="detail-main__season">
             <div class="detail-main__season-main">
                 <div class="detail-main__season-poster">
-                    <img class="detail-main__season-img" src="https://image.tmdb.org/t/p/w780${el.poster_path}">
+                    <img class="detail-main__season-img" src="${super.getPictureUrl(el.poster_path)}">
                 </div>
                 <div class="detail-main__season-info">
                     <h3 class="detail-main__season-title">${el.name}</h3>
                     <p class="detail-main__season-date"><i class="far fa-calendar-alt"></i> ${super.renderDate(el.air_date)}</p>
-                    <p class="detail-main__season-ep_count"><i class="far fa-bookmark"></i> Количество серий: ${el.episode_count}</p>
+                    <p class="detail-main__season-ep_count"><i class="far fa-bookmark"></i> Кількість серій: ${el.episode_count}</p>
                 </div>
             </div>
             <ul class="detail-main__episodes">
@@ -211,6 +219,7 @@ export default class TV extends Item {
                         <img class="detail-main__episode-img" src="${super.getPictureUrl(el.still_path)}">
                     </div>
                     <div class="detail-main__episode-info">
+                        <h3 class="detail-main__episode-title">Серія ${el.episode_number}</h3>
                         <h3 class="detail-main__episode-title">${el.name}</h3>
                         <p class="detail-main__episode-overview"> ${el.overview}</p>
                     </div>

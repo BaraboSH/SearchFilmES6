@@ -10,7 +10,10 @@ export const elements = {
     posters: document.querySelector('.advertise'),
     sortBy: document.querySelector('.sort-by__select'),
     likesMenu: document.querySelector('.likes__field i'),
-    info: document.querySelector('.info')
+    info: document.querySelector('.info'),
+    changeLanguage: document.querySelector('.change__language'),
+    like: document.querySelector('.detail-intro__like'),
+    likeList: document.querySelector('.likes__list')
 }
 
 export const elementStrings = {

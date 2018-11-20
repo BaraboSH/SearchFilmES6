@@ -3,18 +3,22 @@ import Item from './Item';
 export default class Movie extends Item {
     constructor(id) {
         super(id);
+        this.type = 'movie/';
     }
     async getItem() {
         try {
             const resJson = await fetch(`${config.queryMovieById}${this.id}?api_key=${config.apiKey}&language=${config.language}`);
             this.res = await resJson.json();
+            this.title = this.res.title;
+            this.date = super.renderDate(this.res.release_date);
+            this.img = super.getPictureUrl(this.res.poster_path);
             await super.getCredits('movie');
             await super.getRecommend('movie');
         } catch (error) {
             alert(error);
         }
     }
-    async renderResults() {
+    async renderResults(isLiked) {
         const data = this.res;
         const markup = `
             <article class="detail">
@@ -28,10 +32,10 @@ export default class Movie extends Item {
                         <li class="detail-intro__subtext-item">${super.renderDate(data.release_date)}</li>
                     </ul>
                     ${await super.renderButtons(data,'movie')}
-                    <a href="" class="detail-intro__like"><i class="far fa-heart"></i></a>
+                    <a href="" class="detail-intro__like"><i class="${isLiked?"fa fa-heart":"far fa-heart"}"></i></a>
                     <div class="detail-intro__rating">
                         ${super.renderRate(data.vote_average)}
-                        <span>${data.vote_count} проголосовавших</span>
+                        <span>${data.vote_count} голосуючих</span>
                     </div>
                 </div>
             </div>
@@ -42,7 +46,7 @@ export default class Movie extends Item {
                     <div class="col-lg-8 col-sm-12">
                         <div class="detail-main__content">
                             <div class="detail-main__storyline">
-                                <h3 class="detail-main__title">Описание</h3>
+                                <h3 class="detail-main__title">Опис</h3>
                                 <p class="detail-main__description">
                                     ${data.overview}
                                 </p>
@@ -53,19 +57,20 @@ export default class Movie extends Item {
                     <div class="col-lg-4 col-sm-12">
                         <aside>
                             <div class="detail-main__widget">
-                                <h3 class="detail-main__title">Подробности</h3>
-                                <ul class="detail-main__list">
-                                    <li class="detail-main__item"><strong>Премьера: </strong>${super.renderDate(data.release_date)}</li>
-                                    <li class="detail-main__item"><strong>Режиссер: </strong>${super.renderDirector()}</li>
+                                <h3 class="detail-main__title">Подробиці</h3>
+                                <ul class="detail-main__list list">
+                                    <li class="detail-main__item"><strong>Прем'єра: </strong>${super.renderDate(data.release_date)}</li>
+                                    <li class="detail-main__item"><strong>Режисер: </strong>${super.renderDirector()}</li>
                                     <li class="detail-main__item"><strong>Бюджет: </strong>${super.renderBudget(data.budget)} USD</li>
-                                    <li class="detail-main__item"><strong>Страна: </strong>${super.renderCountries(data.production_countries)}</li>
-                                    <li class="detail-main__item"><strong>Язык оригинала: </strong>${data.original_language.toUpperCase()}</li>
-                                    <li class="detail-main__item"><strong>Кинокомпания: </strong>${super.renderCompanies(data.production_companies)}</li>
+                                    <li class="detail-main__item"><strong>Збори: </strong>${super.renderBudget(data.revenue)} USD</li>
+                                    <li class="detail-main__item"><strong>Країна: </strong>${super.renderCountries(data.production_countries)}</li>
+                                    <li class="detail-main__item"><strong>Мова оригіналу: </strong>${data.original_language.toUpperCase()}</li>
+                                    <li class="detail-main__item"><strong>Кінокомпанія: </strong>${super.renderCompanies(data.production_companies)}</li>
                                 </ul>
                             </div>
                             <div class="detail-main__widget">
-                                <h3 class="detail-main__title">Актерский состав</h3>
-                                <ul class="detail-main__list">
+                                <h3 class="detail-main__title">Акторський склад</h3>
+                                <ul class="detail-main__list list">
                                 ${super.renderCasts()}
                                 </ul>
                             </div>
@@ -80,7 +85,7 @@ export default class Movie extends Item {
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-8 text-center text-md-left">
-                        <h2 class="movie-popular__header">Вам также могут понравиться...</h2>
+                        <h2 class="movie-popular__header">Вам також можуть сподобатись...</h2>
                     </div>
                     <div class="owl-carousel owl-theme">
                     ${super.renderRecommends('movie')}
