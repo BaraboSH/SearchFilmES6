@@ -69,7 +69,6 @@ const controlSearch = async (url) => {
             elements.searchTitle.innerHTML = `Найдено ${state.search.totalResults} по запросу '${decodeURIComponent(state.search.query)}'`;
             state.mList = new MovieList(state.search.result);
             movieListView.renderResults(state.search.result, state.search.totalResults);
-            console.log(state.search.result);
         } catch (error) {
             clearLoader();
             alert("Something wrong with the search...");
@@ -108,12 +107,8 @@ const controlDetail = async (type, id) => {
  * КОНТРОЛЛЕР ЛАЙКОВ
  */
 const controlLikes = () => {
-    console.log("LIKE");
-
     if (!state.likes) state.likes = new Likes();
     const currentID = state.detail.type + state.detail.id;
-    console.log(currentID);
-
     // User has NOT yet liked current recipe
     if (!state.likes.isLiked(currentID)) {
         // Add like to the state
@@ -266,8 +261,9 @@ document.addEventListener("DOMContentLoaded", () => {
             currentContent.stop(true).slideUp(duration);
         }
     });
-    $(".owl-carousel").on("mousewheel", ".owl-stage", function (e) {
-        if (e.originalEvent.wheelDelta > 0) {
+    $(".owl-carousel").on("wheel", ".owl-stage", function (e) {
+        const delta = e.originalEvent.deltaY || e.originalEvent.detail || e.originalEvent.wheelDelta;
+        if (delta > 0) {
             $(e.target)
                 .closest(".owl-carousel")
                 .trigger("next.owl");
@@ -312,7 +308,6 @@ const goToPage = async page => {
             state.search.totalResults,
             page
         );
-        console.log(state.search.result);
     } catch (error) {
         clearLoader();
         alert("Something wrong with the search...");
