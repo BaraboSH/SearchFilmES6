@@ -478,7 +478,8 @@ button:focus {
 .detail-intro__rating {
   margin-top: 20px;
   position: relative;
-  cursor: pointer; }
+  cursor: pointer;
+  width: 250px; }
   .detail-intro__rating i {
     color: yellow; }
   .detail-intro__rating span {
