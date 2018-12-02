@@ -8,7 +8,6 @@ export default class Item {
         this.id = id;
     }
     insertIntoDOM(markup) {
-        window.scrollTo(0, 0);
         elements.info.insertAdjacentHTML("afterbegin", markup);
     }
     getPictureUrl(url) {

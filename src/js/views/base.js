@@ -21,6 +21,7 @@ export const elementStrings = {
 };
 
 export const renderLoader = parent => {
+    window.scrollTo(0, 0);
     const loader = `
         <div class="${elementStrings.loader}">
             <div class="lds-hourglass"></div>

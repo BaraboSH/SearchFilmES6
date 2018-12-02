@@ -181,7 +181,7 @@ const mainMenu = async () => {
 const popularMenu = async () => {
     searchView.clearResults();
     searchView.showResults();
-    elements.searchTitle.innerHTML = "Популярные фильмы";
+    elements.searchTitle.innerHTML = "Популярні фільми";
     if (!state.popular) {
         state.popular = new Popular();
         await state.popular.getPopular();
@@ -193,7 +193,7 @@ const popularMenu = async () => {
 const top_ratedMenu = async () => {
     searchView.clearResults();
     searchView.showResults();
-    elements.searchTitle.innerHTML = "Лучшие фильмы";
+    elements.searchTitle.innerHTML = "Найкращі фільми";
     if (!state.topRated) {
         state.topRated = new TopRated();
         await state.topRated.getTopRated();
