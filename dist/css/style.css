@@ -709,7 +709,9 @@ button:focus {
   .sort-by {
     width: 50%; }
   .detail-main__season-main {
-    grid-template-columns: 1fr; } }
+    grid-template-columns: 1fr; }
+  .owl-dots {
+    display: none; } }
 
 .lds-hourglass {
   display: inline-block;
